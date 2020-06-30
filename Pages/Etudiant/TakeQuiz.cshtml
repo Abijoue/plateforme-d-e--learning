@@ -1,0 +1,15 @@
+﻿@page
+@model MyApp.Namespace.TakeQuizModel
+@{
+    
+}
+
+<form method="post">
+    <div class="row mb-2">
+        @* @foreach (var item in Model.questions) *@
+        @for (int i = 0; i < Model.questions.Count; i++){ <br><br>
+        @* @foreach (var item in Model.questions){ *@
+           <a asp-page="./Answer" asp-route-id="@Model.questions[i].IdQst" class="btn btn-primary" > Question @i</a> 
+        }
+   </div>
+</form>

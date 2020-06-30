@@ -1,0 +1,32 @@
+﻿@page
+@model MyApp.Namespace.AnswerModel
+@{
+}
+<form method="post">
+    <div class="row mb-2">
+                    <div class="col-md-6">
+                    <div class="card flex-md-row mb-4 box-shadow h-md-250">
+                        <div class="card-body d-flex flex-column align-items-start">
+                        <strong class="d-inline-block mb-2 text-primary"></strong>
+                        <h3 class="mb-0">
+                            <a class="text-dark" href="#">@Model.question.Qst</a>
+                        </h3>
+                        @* <div class="mb-1 text-muted">@item.ChoixeCorrect</div> *@
+                        <p class="card-text mb-auto">                      
+                        <select asp-for="answer" class="custom-select">
+                                    <option value="Choix1">@Model.question.Choix1</option>
+                                    <option value="Choixe2">@Model.question.Choixe2</option>
+                                    <option value="Choix3">@Model.question.Choix3</option>
+                                    <option value="Choixe4">@Model.question.Choixe4</option>
+                            </select>
+                        </p>
+                        </div>
+
+                    </div>
+                    </div>
+            }
+        </div>
+                        <input class="btn btn-success" type="Submit" value="Ajouter"/>
+
+   </div>
+</form>

@@ -1,0 +1,80 @@
+@page
+@model RegisterModel
+@{
+    ViewData["Title"] = "Register";
+}
+<style>
+   hr.log{border: 1px solid #52F5A3; } 
+</style>
+<div > <h1>@ViewData["Title"]</h1></div>
+<hr class="log">
+<br><br>
+<div class="container">
+  <div class="row">
+    <div class="col-6">
+        @* 1/3 *@
+        <div>
+            <br><br>
+          <img src="/img/register.jpg" class="img-fluid animated" alt="">
+        </div>
+    </div>
+    <div class="col-6">
+        <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
+            <h4>Create a new account.</h4>
+            <hr />
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Input.Email"></label>
+                <input asp-for="Input.Email" class="form-control" />
+                <span asp-validation-for="Input.Email" class="text-danger"></span>
+            </div>
+            <!-- new fields -->
+            <div class="form-group">
+                <label asp-for="Input.Nom"></label>
+                <input asp-for="Input.Nom" class="form-control" />
+                <span asp-validation-for="Input.Nom" class="text-danger"></span>
+
+                <label asp-for="Input.Prenom"></label>
+                <input asp-for="Input.Prenom" class="form-control" />
+                <span asp-validation-for="Input.Prenom" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.CIN"></label>
+                <input asp-for="Input.CIN" class="form-control" />
+                <span asp-validation-for="Input.CIN" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.Date"></label>
+                <input asp-for="Input.Date" class="form-control" />
+                <span asp-validation-for="Input.Date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.Status"></label>
+                <select asp-for="Input.Status" class="custom-select">
+                    <option value="A">Admin</option>
+                    <option value="P">Professeur</option>
+                    <option value="E">Etudiant</option>
+                </select>
+            <span asp-validation-for="Input.Date" class="text-danger"></span>
+            </div>
+            
+            <!-- end --> 
+            <div class="form-group">
+                <label asp-for="Input.Password"></label>
+                <input asp-for="Input.Password" class="form-control" />
+                <span asp-validation-for="Input.Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.ConfirmPassword"></label>
+                <input asp-for="Input.ConfirmPassword" class="form-control" />
+                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-outline-success">Register</button>
+        </form>   
+         </div>
+  </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

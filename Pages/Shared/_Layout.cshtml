@@ -1,0 +1,213 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - PFA_Project</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <!-- TEMPLATE ADDING SOURCES-->
+        <!-- Favicons -->
+        <link href="/img/favicon.png" rel="icon">
+        <link href="/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+        <!-- Google Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+        <!-- Vendor CSS Files -->
+        <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="/vendor/icofont/icofont.min.css" rel="stylesheet">
+        <link href="/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+        <link href="/vendor/venobox/venobox.css" rel="stylesheet">
+        <link href="/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+        <!-- Template Main CSS File -->
+        <link href="/css/style.css" rel="stylesheet">
+    <!-- END SOURCES-->
+    <style>
+      a.myown {
+            margin-right:99px;
+            margin-left:99px;
+
+       }
+    </style>
+</head>
+<body>
+  <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                 <h1 class="logo mr-auto"><a class="myown" href="/">T H E G A T E</a></h1>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div>   </div>
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    <partial name="_LoginPartial" />
+                    <ul class="navbar-nav flex-grow-1">
+                        @if(User.IsInRole(PFA_Project.Model.GestionRole.AdminUser)){
+                         <li class="nav-item dropdown">
+                          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Ajouter Elements
+                          </a>
+                          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" asp-area="" asp-page="/Filiere/AddFiliere">Ajouter Filière</a>
+                                <a class="dropdown-item" asp-area="" asp-page="/Matiere/AddMatiere">Ajouter matière</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Professeurs/ProfList">les professeurs</a>
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Etudiant/EtudiantList">les Etudiants</a>
+                        </li>
+                         }@if(User.IsInRole(PFA_Project.Model.GestionRole.Professeur)){
+                        <li class="nav-item dropdown">
+                          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Ajouter Elements
+                          </a>
+                          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" asp-area="" asp-page="/Cours/AddCours">Ajouter Cours</a>
+                                <a class="dropdown-item" asp-area="" asp-page="/Cours/ViewCours">List des Cours</a>
+                            <div class="dropdown-divider"></div>
+                          </div>
+                        </li>
+
+                         }@if(User.IsInRole(PFA_Project.Model.GestionRole.Etudiant)){
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Etudiant/MyList">Mon List</a>
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Cours/CoursList">List des Cours</a>
+                        </li>
+                         }
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    
+
+<!-- ********************* RenderBody ********************** -->
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+<!-- ******************************************************* -->
+
+<!-- Footer -->
+<footer class="page-footer font-small blue-grey lighten-5">
+
+  <div style="background-color: #66FFB2;">
+    <div class="container">
+      <hr style="border: 3px solid #66FFB2;">
+    </div>
+  </div>
+
+  <!-- Footer Links -->
+  <div class="container text-center text-md-left mt-5">
+
+    <!-- Grid row -->
+    <div class="row mt-3 dark-grey-text">
+
+      <!-- Grid column -->
+      <div class="col-md-3 col-lg-4 col-xl-3 mb-4">
+
+        <!-- Content -->
+        <h6 class="text-uppercase font-weight-bold">T H E G A T E</h6>
+        <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+        <p> T H E G A T E offers high quality courses available across distincts categories,
+           all absolutely free to complete. All our courses are self-paced and have been designed
+            by subject matter experts, to give you an interactive and enriched learning experience.</p>
+
+      </div>
+      <!-- Grid column -->
+
+      <!-- Grid column -->
+      <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+
+        <!-- Links -->
+        <h6 class="text-uppercase font-weight-bold">TEAM</h6>
+        <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+        <p>
+          <a class="dark-grey-text" href="#!">ABIJOUE</a>
+        </p>
+        <p>
+          <a class="dark-grey-text" href="#!">TICHOUT</a>
+        </p>
+        <p>
+          <a class="dark-grey-text" href="#!">MELLOUK</a>
+        </p>
+        <p>
+
+      </div>
+      <!-- Grid column -->
+
+      <!-- Grid column -->
+      <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+
+        <!-- Links -->
+        <h6 class="text-uppercase font-weight-bold">Useful links</h6>
+        <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+        <p>
+          <a class="dark-grey-text" href="#!">wikipedia</a>
+        </p>
+        <p>
+          <a class="dark-grey-text" href="#!">SCI HUB</a>
+        </p>
+        <p>
+          <a class="dark-grey-text" href="#!">Translation</a>
+        </p>
+
+      </div>
+      <!-- Grid column -->
+
+      <!-- Grid column -->
+      <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+
+        <!-- Links -->
+        <h6 class="text-uppercase font-weight-bold">Contact</h6>
+        <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+        <p>
+          <i class="fas fa-home mr-3"></i> Home , Sweet Home</p>
+        <p>
+          <i class="fas fa-envelope mr-3"></i> med.abix@gmail.com</p>
+        <p>
+          <i class="fas fa-phone mr-3"></i> + 00 000 000 00</p>
+
+      </div>
+      <!-- Grid column -->
+
+    </div>
+    <!-- Grid row -->
+
+  </div>
+  <!-- Footer Links -->
+
+  <!-- Copyright -->
+  <div class="footer-copyright text-center text-black-50 py-3">© 2020 Copyright:
+    <a class="dark-grey-text" href="https://mdbootstrap.com/"> AB!X</a>
+  </div>
+  <!-- Copyright -->
+
+</footer>
+<!-- Footer -->
+
+  <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="/vendor/jquery/jquery.min.js"></script>
+  <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/vendor/jquery.easing/jquery.easing.min.js"></script>
+  <script src="/vendor/php-email-form/validate.js"></script>
+  <script src="/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="/vendor/counterup/counterup.min.js"></script>
+  <script src="/vendor/venobox/venobox.min.js"></script>
+  <script src="ssets/vendor/mobile-nav/mobile-nav.js"></script>
+  <script src="/vendor/wow/wow.min.js"></script>
+  <script src="/vendor/owl.carousel/owl.carousel.min.js"></script>
+  <script src="/vendor/waypoints/jquery.waypoints.min.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="/js/main.js"></script>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

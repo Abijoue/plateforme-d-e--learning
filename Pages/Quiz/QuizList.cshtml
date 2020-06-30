@@ -1,0 +1,46 @@
+﻿@page
+@model MyApp.Namespace.QuizListModel
+@{
+}
+<div class="nav-scroller bg-white box-shadow">
+      <nav class="nav nav-underline">
+        <a class="nav-link active" href="/Quiz/AddQuiz">Ajouter Quiz</a>
+      </nav>
+</div>
+
+<form method="post">
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">ID de Quiz</th>
+            <th scope="col">Nom de Cours</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+
+          @foreach (var quiz in Model.quizzes){
+          <tr>
+            <td>@quiz.IdQuiz</td>
+            @foreach (var item in Model.courses)
+            {
+                @if(item.IdCours == quiz.IdCours){
+                    <td>@item.CoursName</td>
+                }
+            }
+            
+            <td> 
+              <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure that u want to delete the element')"
+              asp-page-handler="delete" asp-route-id="@quiz.IdQuiz" > Delete </button>
+            </td>
+                <td><a asp-page="./AddQst" asp-route-id="@quiz.IdQuiz" class="btn btn-info" > ADD Questions</a>  </td>
+                <td><a asp-page="./QstList" asp-route-id="@quiz.IdQuiz" class="btn btn-warning" > Questions de quiz</a>  </td>
+
+          </tr>
+          }
+        </tbody>
+      </table>
+</form>
+</div>

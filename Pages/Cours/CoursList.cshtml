@@ -1,0 +1,95 @@
+﻿@page "{handler?}"
+@model MyApp.Namespace.CoursListModel
+@{
+}
+<style>
+  .adjust{
+    height:36px;
+    width:40px;
+}
+</style>
+<div class="nav-scroller bg-white box-shadow">
+      <nav class="nav nav-underline">
+        <a class="nav-link active" href="/Cours/AddCours">Ajouter Cours</a>
+        <a class="nav-link" href="/Cours/CoursList">Courses </a>
+      </nav>
+</div>
+@* 
+<form method="post">
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">ID de Cours</th>
+            <th scope="col">Nom de Course</th>
+            <th scope="col">Matiere</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+
+          @foreach (var cours in Model.courses){
+          <tr>
+            <td>@cours.IdCours</td>
+            <td>@cours.CoursName</td>
+            @foreach (var sub in Model.matieres)
+            {
+              @if(sub.IdMatiere == cours.IdMatiere){
+                <td>@sub.NomMatiere</td>
+              }
+            }
+            
+            <td> 
+              <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure that u want to delete the element')"
+              asp-page-handler="delete" asp-route-id="@cours.IdCours" > Delete </button>
+            </td>
+                <td><a asp-page="./EditFiliere" asp-route-id="@cours.IdCours" class="btn btn-primary" > EDIT</a>  </td>
+          </tr>
+          }
+        </tbody>
+      </table>
+</form> *@
+<form method="post">
+<div class="row">
+       @foreach (var cours in Model.courses){
+            <div class="col-md-4">
+              <div class="card mb-4 box-shadow">
+                @* ---------------------------------- *@
+                <img class="card-img-top" alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;" src="/dynamic_images/@cours.URL_img" data-holder-rendered="true">
+                <div class="card-body">
+                   <p class="card-text"><b>@cours.CoursName</b></p>
+                   @foreach (var sub in Model.matieres)
+                      {
+                        @if(sub.IdMatiere == cours.IdMatiere){
+                          <p class="card-text">@sub.NomMatiere</p>
+                          @* <a href="#" class="btn btn-success btn-lg">
+                                <span class="glyphicon glyphicon-plus"></span>  
+                          </a> *@
+                        }
+                      } 
+                  <p class="card-text">@cours.Description</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      @* <button type="submit" class="btn btn-sm btn-outline-secondary">View</button> *@
+                      <a asp-page="./ViewCours" asp-route-id="@cours.IdCours" class="btn btn-sm btn-outline-secondary">View</a>  
+                      @if(cours.Auteur == Model.userID ){
+                      <a asp-page="./EditCours" asp-route-id="@cours.IdCours" class="btn btn-primary" > EDIT</a>  
+                      <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure that u want to delete the Cours')"
+                        asp-page-handler="delete" asp-route-id="@cours.IdCours" > Delete </button>
+                        }
+                    </div>
+                  </div>
+                    <p class="card-text" >
+                       <small class="text-muted">@cours.DatePub</small>
+                         <button  type="submit" class="btn btn-success btn-sm " style="float: right;"
+                         asp-page-handler="add" asp-route-id="@cours.IdCours"> @*disabled *@
+                          <span class="glyphicon glyphicon-plus"> + </span>
+                        </button> 
+                        @* <a asp-page="/Etudiant/Mylist" asp-route-id="@cours.IdCours" class="btn btn-sm btn-outline-secondary" style="float: right;">+</a>   *@
+                    </p>
+                </div>
+              </div>
+            </div>
+       }  
+
+       </form>

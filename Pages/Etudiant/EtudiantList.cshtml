@@ -1,0 +1,46 @@
+﻿@page
+@model MyApp.Namespace.EtudiantListModel
+@{
+}
+<style>
+    .prop {
+        background-color: #CCFFCC;
+    }
+
+</style>
+    <div class="container prop p-3 my-3 text-black">
+    <h1>Etudiants List</h1>
+    <p>List of des etudiants in the DB </p>
+  </div><br/>
+      @* <a class="btn btn-primary" href="/Student/AddStudent" role="button">Ajouter Etudiant</a>
+  <br/><br/> *@
+
+<form method="post">
+      <table class="table">
+        <thead class="table table-hover table-dark">
+          <tr>
+            <th scope="col">Num ° ID</th>
+            <th scope="col">Full Name</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+
+          </tr>
+        </thead>
+        <tbody>
+
+          @foreach (var etu in Model.Etudiants){
+          <tr>
+            <th>@etu.Id</th>
+            <td>@etu.Nom <i>@etu.Prenom</i></td>
+            <td> 
+              <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure that u want to delete that Professor')"
+              asp-page-handler="delete" asp-route-id="@etu.Id" > Delete </button>
+            </td>
+          </tr>
+          }
+        </tbody>
+      </table>
+</form>
+</div>
+<br><br><br><br><br>

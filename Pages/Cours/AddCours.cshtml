@@ -1,0 +1,72 @@
+﻿@page
+@model MyApp.Namespace.AddCoursModel
+@{
+}
+
+<div class="container p-3 my-3 bg-gradient-success text-success">
+    <h1>Ajouter un Cours</h1>
+  </div>
+
+  <div class="nav-scroller bg-white box-shadow">
+        <nav class="nav nav-underline">
+          <a class="nav-link" href="/Cours/CoursList">List des Courses</a>
+        </nav>
+  </div>
+
+  <div class="container">
+  <div class="row">
+    <div class="col-4">
+        @* 1/3 *@
+        <div>
+            <br><br>
+          <img src="/img/CR.png" class="img-fluid animated" alt="">
+        </div>
+    </div>
+    <div class="col-8">
+      <div class="container">
+        <div class="row">
+          @* <div class="col-6 col-md-4"> *@
+              <form method="post"  enctype="multipart/form-data">
+              <div class="form-group">
+                  <br><br>
+                @* <label asp-for="Cours.CoursName"  class="control-label"></label><br/> *@
+                <div class="input-group input-group-sm mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">Nom De Cours</span>
+                  </div>
+                  <input type="text" class="form-control" asp-for="cours.CoursName" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                </div>
+<br>
+                <div>
+                <span class="label label-info">Matiere</span>
+                <select asp-for="cours.IdMatiere" class="custom-select">
+                  @foreach (var m in Model.matieres)
+                    {
+                          <option value="@m.IdMatiere">@m.NomMatiere</option>
+                    }
+                </select>
+                </div>
+                <br><br>
+                <span class="label label-info">image de Cours         :</span>
+                <input type="file" asp-for="Upload_img" multiple accept='image/*' /><br>
+<br>
+
+                      <div class="input-group-prepend">
+                        <span class="input-group-text">Description de cours</span>
+                        <textarea class="form-control" aria-label="Description" asp-for="cours.Description"></textarea>
+                      </div>
+<br>
+                <span class="label label-info">PDF                    :</span>
+                <input type="file" asp-for="Upload_pdf" accept="application/pdf" />  
+<br><br>
+
+              </div>
+              <br>
+              <tr></tr><tr></tr><tr></tr><input class="btn btn-success" type="Submit" value="Ajouter"/>
+      
+              </form>
+          @* </div> *@
+        </div>
+      </div>
+   </div>
+   <br><br>

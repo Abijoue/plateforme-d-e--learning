@@ -1,0 +1,56 @@
+﻿@page
+@model MyApp.Namespace.MyListModel
+@{
+}
+<div class="nav-scroller bg-white box-shadow">
+      <nav class="nav nav-underline">
+        <a class="nav-link" href="/Cours/CoursList">List</a>
+      </nav>
+</div>
+
+<form method="post">
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Mon Nom </th>
+            <th scope="col">Cours</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+
+          @foreach (var insc in Model.inscriptions){
+              @if(insc.IdEtudiant == Model.userID){
+
+          <tr>
+            <td>@insc.IdInscription</td>
+            @foreach (var item in Model.etudiants)
+            {
+                @if(insc.IdEtudiant == Model.userID){
+                    <td>@item.Nom - @item.Prenom</td>
+                }
+                
+            }
+           @foreach (var cr in Model.courses)
+            {
+                @if(insc.IdCours == cr.IdCours){
+                    <td>@cr.CoursName</td>
+                }
+            }
+             @* <td> 0 </td> *@
+            
+            <td> 
+              <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure that u want to delete the element')"
+              asp-page-handler="delete" asp-route-id="@insc.IdInscription" > Delete </button>
+            </td>
+                <td><a asp-page="./TakeQuiz" asp-route-id="@insc.IdCours" class="btn btn-warning" >Quiz</a>  </td>
+                
+          </tr>
+          }
+          }
+        </tbody>
+      </table>
+</form>
+</div>

@@ -1,0 +1,65 @@
+﻿@page
+@model MyApp.Namespace.AddMatiereModel
+@{
+}
+
+<div class="container p-3 my-3 bg-gradient-success text-success">
+    <h1>Ajouter un Matiére</h1>
+  </div>
+
+  <div class="nav-scroller bg-white box-shadow">
+        <nav class="nav nav-underline">
+          <a class="nav-link" href="/Matiere/MatiereList">List des Matiers</a>
+        </nav>
+  </div>
+
+  <div class="container">
+  <div class="row">
+    <div class="col-4">
+        @* 1/3 *@
+        <div>
+            <br><br>
+          <img src="/img/addMatiere.png" class="img-fluid animated" alt="">
+        </div>
+    </div>
+    <div class="col-8">
+      <div class="container">
+        <div class="row">
+          @* <div class="col-6 col-md-4"> *@
+              <form method="post">
+              <div class="form-group">
+                  <br><br>
+                @* <label asp-for="matiere.NomMatiere"  class="control-label"></label><br/> *@
+                <div class="input-group input-group-sm mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">Nom De Matiere</span>
+                  </div>
+                  <input type="text" class="form-control" asp-for="matiere.NomMatiere" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                </div>
+
+                <select asp-for="matiere.IdProf" class="custom-select">
+                  @foreach (var u in Model.users)
+                    {
+                        @if(u.Status == 'P'){
+                          <option value="@u.Id">@u.Nom</option>
+                        }
+                    }
+                </select>
+
+                <select asp-for="matiere.IdFiliere" class="custom-select">
+                  @foreach (var f in Model.filieres)
+                    {
+                          <option value="@f.IdFiliere">@f.NomFiliere</option>
+                    }
+                </select>
+      
+              </div>
+              <br>
+              <tr></tr><tr></tr><tr></tr><input class="btn btn-success" type="Submit" value="Ajouter"/>
+      
+              </form>
+          @* </div> *@
+        </div>
+      </div>
+   </div>
+   <br><br>
